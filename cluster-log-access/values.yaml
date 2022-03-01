@@ -1,3 +1,7 @@
+image:
+  repository: registry.connect.redhat.com/calyptia/fluent-bit
+  tag: 1.8.12
+
 serviceAccount:
   create: false
   name: fluent-bit
