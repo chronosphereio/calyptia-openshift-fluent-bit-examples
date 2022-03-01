@@ -1,7 +1,3 @@
-image:
-  repository: registry.connect.redhat.com/calyptia/fluent-bit
-  tag: 1.8.12
-
 serviceAccount:
   create: false
   name: fluent-bit
@@ -12,6 +8,11 @@ securityContext:
     type: spc_t
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
+
+# The rest is not required, just to simplify and use in the example
+image:
+  repository: registry.connect.redhat.com/calyptia/fluent-bit
+  tag: 1.8.12
 
 config:
   outputs: |
