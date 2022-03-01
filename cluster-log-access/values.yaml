@@ -1,0 +1,16 @@
+serviceAccount:
+  create: false
+  name: fluent-bit
+
+securityContext:
+  runAsUser: 0
+  seLinuxOptions:
+    type: spc_t
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+
+config:
+  outputs: |
+    [OUTPUT]
+        Name stdout
+        Match *
