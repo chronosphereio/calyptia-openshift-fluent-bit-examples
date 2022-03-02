@@ -1,11 +1,11 @@
 #!/bin/bash
 set -eux
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 NAMESPACE=${NAMESPACE:-fluent-bit-logging}
 IMAGE=${IMAGE:-registry.connect.redhat.com/calyptia/fluent-bit:1.8.12}
 
-/bin/bash "$SCRIPT_DIR/service-account-creation.sh"
+# Make sure to do this first
+# /bin/bash "$SCRIPT_DIR/service-account-creation.sh"
 
 echo "Setting up Fluent Bit daemonset in $NAMESPACE"
 
@@ -49,7 +49,7 @@ data:
         K8S-Logging.Exclude On
 
     [OUTPUT]
-        Name stdout
+        Name null
         Match *
 ---
 apiVersion: apps/v1

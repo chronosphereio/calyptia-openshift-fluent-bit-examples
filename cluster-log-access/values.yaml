@@ -14,8 +14,10 @@ image:
   repository: registry.connect.redhat.com/calyptia/fluent-bit
   tag: 1.8.12
 
+# We need an output but don't really care about it: if you use stdout then make sure to filter the
+# log for fluent bit pod out otherwise it'll recurse into its own logs!
 config:
   outputs: |
     [OUTPUT]
-        Name stdout
+        Name null
         Match *
