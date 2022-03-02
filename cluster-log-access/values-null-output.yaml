@@ -1,0 +1,7 @@
+# We need an output but don't really care about it: if you use stdout then make sure to filter the
+# log for fluent bit pod out otherwise it'll recurse into its own logs!
+config:
+  outputs: |
+    [OUTPUT]
+        Name null
+        Match *

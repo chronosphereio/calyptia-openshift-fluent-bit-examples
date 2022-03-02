@@ -1,0 +1,39 @@
+config:
+  inputs: |
+    [INPUT]
+        name            node_exporter_metrics
+        tag             node_metrics
+        scrape_interval 2
+
+    [INPUT]
+        Name              tail
+        Path              /var/log/containers/*.log
+        multiline.parser  docker, cri
+        Tag               kube.*
+        Mem_Buf_Limit     5MB
+        Skip_Long_Lines   On
+
+  outputs: |
+    [OUTPUT]
+        name        prometheus_remote_write
+        # host        prometheus-prod-01-eu-west-0.grafana.net
+        host        $GRAFANA_CLOUD_PROM_URL
+        match       *
+        uri         /api/prom/push
+        port        443
+        tls         on
+        tls.verify  on
+        http_user   $GRAFANA_CLOUD_USERNAME
+        http_passwd $GRAFANA_CLOUD_APIKEY
+
+    [OUTPUT]
+        Name        loki
+        Match       *
+        # Host        logs-prod-eu-west-0.grafana.net
+        Host        $GRAFANA_CLOUD_LOKI_URL
+        port        443
+        tls         on
+        tls.verify  on
+        http_user   $GRAFANA_CLOUD_USERNAME
+        http_passwd $GRAFANA_CLOUD_APIKEY
+        tenant_id   openshift

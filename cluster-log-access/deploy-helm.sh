@@ -12,4 +12,8 @@ echo "Setting up Fluent Bit from helm chart in $NAMESPACE"
 # Add both with and without slashes as considered different
 helm repo add fluent https://fluent.github.io/helm-charts || helm repo add fluent https://fluent.github.io/helm-charts/
 
-helm upgrade --install fluent-bit fluent/fluent-bit --namespace "$NAMESPACE" -f "$SCRIPT_DIR/values.yaml" --debug --wait
+helm upgrade --install fluent-bit fluent/fluent-bit \
+    --namespace "$NAMESPACE" \
+    --values "$SCRIPT_DIR/values.yaml" \
+    --values "$SCRIPT_DIR/values-null-output.yaml" \
+    --debug --wait
