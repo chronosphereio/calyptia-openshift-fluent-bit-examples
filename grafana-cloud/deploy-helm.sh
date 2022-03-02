@@ -24,5 +24,6 @@ envsubst '$GRAFANA_CLOUD_PROM_USERNAME,$GRAFANA_CLOUD_LOKI_USERNAME,$GRAFANA_CLO
 helm upgrade --install fluent-bit fluent/fluent-bit \
     --namespace "$NAMESPACE" \
     --values "$SCRIPT_DIR/../cluster-log-access/values.yaml" \
+    --values "$SCRIPT_DIR/../cluster-metrics-access/values.yaml" \
     --values "$SCRIPT_DIR/values-grafana-cloud-actual.yaml" \
     --debug --wait
