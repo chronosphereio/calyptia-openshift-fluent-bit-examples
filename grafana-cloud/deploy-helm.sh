@@ -13,6 +13,7 @@ echo "Setting up Fluent Bit to Grafana Cloud from helm chart in $NAMESPACE"
 helm repo add fluent https://fluent.github.io/helm-charts || helm repo add fluent https://fluent.github.io/helm-charts/
 
 # Set up the appropriate variables and substitute them
+# shellcheck disable=SC2016
 envsubst '$GRAFANA_CLOUD_USERNAME,$GRAFANA_CLOUD_APIKEY,$GRAFANA_CLOUD_PROM_URL,$GRAFANA_CLOUD_LOKI_URL' < "$SCRIPT_DIR/values-grafana-cloud.yaml" > "$SCRIPT_DIR/values-grafana-cloud-actual.yaml"
 
 helm upgrade --install fluent-bit fluent/fluent-bit \
