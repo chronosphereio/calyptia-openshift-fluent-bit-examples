@@ -1,19 +1,7 @@
 config:
-  inputs: |
-    [INPUT]
-        name            node_exporter_metrics
-        tag             node_metrics
-        scrape_interval 2
-
-    [INPUT]
-        Name              tail
-        Path              /var/log/containers/*.log
-        multiline.parser  docker, cri
-        Tag               kube.*
-        Mem_Buf_Limit     5MB
-        Skip_Long_Lines   On
-
   outputs: |
+    @include input-node-exporter.conf
+
     [OUTPUT]
         name        prometheus_remote_write
         host        $GRAFANA_CLOUD_PROM_URL

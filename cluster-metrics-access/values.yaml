@@ -1,0 +1,27 @@
+extraVolumes:
+  - name: hostproc
+    hostPath:
+      path: /proc
+  - name: hostsys
+    hostPath:
+      path: /sys
+
+extraVolumeMounts:
+  - name: hostproc
+    mountPath: /host/proc
+    readOnly: true
+  - name: hostsys
+    mountPath: /host/sys
+    readOnly: true
+
+# Now add the input using the mount points above
+# This must be included somewhere in the config, e.g. in the outputs we want to use it
+config:
+  extraFiles:
+    input-node-exporter.conf: |
+      [INPUT]
+          name            node_exporter_metrics
+          tag             node_metrics
+          scrape_interval 10
+          path.procfs     /host/proc
+          path.sysfs      /host/sys
