@@ -14,7 +14,7 @@ metadata:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: fluent-bit
+  name: fluent-bit-openshift
   namespace: $NAMESPACE
 ---
 apiVersion: security.openshift.io/v1
@@ -83,7 +83,7 @@ metadata:
   namespace: $NAMESPACE
 subjects:
   - kind: ServiceAccount
-    name: fluent-bit
+    name: fluent-bit-openshift
     namespace: $NAMESPACE
 roleRef:
   apiGroup: rbac.authorization.k8s.io
