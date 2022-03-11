@@ -3,6 +3,7 @@ set -eux
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 NAMESPACE=${NAMESPACE:-fluent-bit-logging}
+LOKI_TENANT_ID=${LOKI_TENANT_ID:-openshift-example}
 
 # Make sure to do this first
 /bin/bash "$SCRIPT_DIR/../cluster-log-access/service-account-creation.sh"
@@ -19,7 +20,7 @@ if [[ -f "$SCRIPT_DIR/.env" ]]; then
 fi
 
 # shellcheck disable=SC2016
-envsubst '$GRAFANA_CLOUD_PROM_USERNAME,$GRAFANA_CLOUD_LOKI_USERNAME,$GRAFANA_CLOUD_APIKEY,$GRAFANA_CLOUD_PROM_URL,$GRAFANA_CLOUD_LOKI_URL' < "$SCRIPT_DIR/values-grafana-cloud.yaml" > "$SCRIPT_DIR/values-grafana-cloud-actual.yaml"
+envsubst '$GRAFANA_CLOUD_PROM_USERNAME,$GRAFANA_CLOUD_LOKI_USERNAME,$GRAFANA_CLOUD_APIKEY,$GRAFANA_CLOUD_PROM_URL,$GRAFANA_CLOUD_LOKI_URL,$LOKI_TENANT_ID' < "$SCRIPT_DIR/values-grafana-cloud.yaml" > "$SCRIPT_DIR/values-grafana-cloud-actual.yaml"
 
 helm upgrade --install fluent-bit fluent/fluent-bit \
     --namespace "$NAMESPACE" \

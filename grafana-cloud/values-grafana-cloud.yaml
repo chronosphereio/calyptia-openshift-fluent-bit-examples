@@ -22,4 +22,4 @@ config:
         tls.verify  on
         http_user   $GRAFANA_CLOUD_LOKI_USERNAME
         http_passwd $GRAFANA_CLOUD_APIKEY
-        tenant_id   openshift
+        tenant_id   $LOKI_TENANT_ID
