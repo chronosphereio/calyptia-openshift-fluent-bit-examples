@@ -26,4 +26,4 @@ helm upgrade --install fluent-bit fluent/fluent-bit \
     --values "$SCRIPT_DIR/../cluster-log-access/values.yaml" \
     --values "$SCRIPT_DIR/../cluster-metrics-access/values.yaml" \
     --values "$SCRIPT_DIR/values-grafana-cloud-actual.yaml" \
-    --debug --wait
+    --debug --wait "$@"
