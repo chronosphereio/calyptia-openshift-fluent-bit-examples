@@ -1,0 +1,13 @@
+config:
+  outputs: |
+    @include input-node-exporter.conf
+
+    [OUTPUT]
+        name                es
+        match               *
+        tls                 On
+        tls.verify          On
+        Suppress_Type_Name  On
+        Index               logs-fluent-bit
+        Cloud_Auth          $ELASTIC_CLOUD_AUTH
+        Cloud_ID            $ELASTIC_CLOUD_ID
