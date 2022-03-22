@@ -1,7 +1,5 @@
 config:
   outputs: |
-    @include input-node-exporter.conf
-
     [OUTPUT]
         Name        datadog
         Match       *
