@@ -2,17 +2,6 @@ config:
   outputs: |
     @include input-node-exporter.conf
 
-    # [OUTPUT]
-    #     name        prometheus_remote_write
-    #     host        $GRAFANA_CLOUD_PROM_URL
-    #     match       *
-    #     uri         /api/prom/push
-    #     port        443
-    #     tls         on
-    #     tls.verify  on
-    #     http_user   $GRAFANA_CLOUD_PROM_USERNAME
-    #     http_passwd $GRAFANA_CLOUD_APIKEY
-
     [OUTPUT]
         Name        datadog
         Match       *
