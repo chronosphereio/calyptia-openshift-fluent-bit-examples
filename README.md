@@ -1,4 +1,4 @@
-# Fluent Bit usage on Openshift by example
+# Fluent Bit usage on OpenShift by example
 
 This repository contains helpful examples and scripts to use Fluent Bit on Openshift.
 
