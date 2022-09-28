@@ -1,0 +1,31 @@
+# Combined for both local Loki stack and S3
+env:
+  - name: AWS_ACCESS_KEY_ID
+    value: console
+  - name: AWS_SECRET_ACCESS_KEY
+    value: console123
+config:
+  outputs: |
+    @include input-node-exporter.conf
+
+    [OUTPUT]
+        name        prometheus_remote_write
+        host        loki-prometheus-server
+        match       *
+        uri         /api/v1/write
+        add_label   job fluentbit
+
+    [OUTPUT]
+        Name        loki
+        Match       *
+        Host        loki
+        Labels      job=fluentbit
+
+    [OUTPUT]
+        Name        s3
+        Match       kube.*
+        Endpoint    http://minio:9000
+        Tls         Off
+        Bucket      kubelogs
+        store_dir   /tmp/s3
+        upload_timeout 1m

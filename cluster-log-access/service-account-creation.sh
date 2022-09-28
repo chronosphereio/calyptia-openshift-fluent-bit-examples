@@ -43,7 +43,7 @@ forbiddenSysctls:
   - '*'
 seLinuxContext:
   type: RunAsAny
-readOnlyRootFilesystem: true
+readOnlyRootFilesystem: false
 fsGroup:
   type: RunAsAny
 groups: []

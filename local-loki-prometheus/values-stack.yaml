@@ -1,0 +1,60 @@
+grafana:
+  enabled: true
+  rbac:
+    create: false
+  securityContext:
+    fsGroup: null
+    runAsGroup: null
+    runAsNonRoot: true
+    runAsUser: null
+  serviceAccount:
+    create: false
+    name: fluent-bit-openshift
+    annotations: {}
+prometheus:
+  enabled: true
+  rbac:
+    create: false
+  serviceAccounts:
+    server:
+      create: false
+      name: fluent-bit-openshift
+      annotations: {}
+  alertmanager:
+    enabled: false
+    persistentVolume:
+      enabled: false
+  server:
+    enabled: true
+    extraFlags:
+      - web.enable-lifecycle
+      - web.enable-remote-write-receiver
+    persistentVolume:
+      enabled: false
+    securityContext:
+      runAsUser: null
+      runAsNonRoot: true
+      runAsGroup: null
+      fsGroup: null
+  kubeStateMetrics:
+    enabled: false
+  nodeExporter:
+    enabled: false
+  pushgateway:
+    enabled: false
+fluent-bit:
+  enabled: false
+promtail:
+  enabled: false
+loki:
+  rbac:
+    create: false
+  securityContext:
+    fsGroup: null
+    runAsGroup: null
+    runAsNonRoot: true
+    runAsUser: null
+  serviceAccount:
+    create: false
+    name: fluent-bit-openshift
+    annotations: {}

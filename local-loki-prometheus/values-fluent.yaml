@@ -1,0 +1,16 @@
+config:
+  outputs: |
+    @include input-node-exporter.conf
+
+    [OUTPUT]
+        name        prometheus_remote_write
+        host        loki-prometheus-server
+        match       *
+        uri         /api/v1/write
+        add_label   job fluentbit
+
+    [OUTPUT]
+        Name        loki
+        Match       *
+        Host        loki
+        Labels      job=fluentbit

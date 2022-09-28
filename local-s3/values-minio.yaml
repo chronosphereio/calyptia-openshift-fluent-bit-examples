@@ -1,0 +1,17 @@
+rootUser: rootuser
+rootPassword: rootpass123
+mode: standalone
+replicas: 1
+persistence:
+  enabled: false
+securityContext:
+  enabled: false
+resources: 
+  requests: 
+    memory: 128Mi
+serviceAccount:
+  create: false
+  name: fluent-bit-openshift
+# Do these manually
+buckets: {}
+users: {}

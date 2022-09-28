@@ -1,0 +1,25 @@
+env:
+  - name: AWS_ACCESS_KEY_ID
+    value: console
+  - name: AWS_SECRET_ACCESS_KEY
+    value: console123
+config:
+  outputs: |
+
+    [OUTPUT]
+        Name        s3
+        Match       host.*
+        Endpoint    http://minio:9000
+        Tls         Off
+        Bucket      hostlogs
+        store_dir   /tmp/s3
+        upload_timeout 1m
+
+    [OUTPUT]
+        Name        s3
+        Match       kube.*
+        Endpoint    http://minio:9000
+        Tls         Off
+        Bucket      kubelogs
+        store_dir   /tmp/s3
+        upload_timeout 1m

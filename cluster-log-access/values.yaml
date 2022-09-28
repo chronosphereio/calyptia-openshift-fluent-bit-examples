@@ -6,13 +6,13 @@ securityContext:
   runAsUser: 0
   seLinuxOptions:
     type: spc_t
-  readOnlyRootFilesystem: true
+  readOnlyRootFilesystem: false
   allowPrivilegeEscalation: false
 
 # The rest is not required, just to simplify and use in the example
 image:
   repository: registry.connect.redhat.com/calyptia/fluent-bit
-  tag: 1.9.0
+  tag: 1.9.8
 
 # We need an output but don't really care about it: if you use stdout then make sure to filter the
 # log for fluent bit pod out otherwise it'll recurse into its own logs!
