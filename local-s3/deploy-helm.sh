@@ -7,7 +7,7 @@ NAMESPACE=${NAMESPACE:-fluent-bit-logging}
 # Set this to $PWD/values-fluent-local-all.yaml for Loki + S3 logs all locally
 VALUES_FILE=${VALUES_FILE:-$SCRIPT_DIR/values-fluent.yaml}
 
-# Make sure to do this first
+# Make sure to do this first for Openshift
 /bin/bash "$SCRIPT_DIR/../cluster-log-access/service-account-creation.sh"
 
 echo "Setting up Fluent Bit to local Minio from helm chart in $NAMESPACE"
@@ -26,7 +26,8 @@ echo "Set up Minio so now set up buckets, etc. using login rootuser:rootpass123"
 echo "To port forward Minio console 'kubectl port-forward --namespace $NAMESPACE svc/minio-console 9001'"
 
 if [[ "${DEPLOY_LOKI_STACK:-no}" != "no" ]]; then 
-    SKIP_FLUENT_BIT=yes /bin/bash "$SCRIPT_DIR"/../local-loki-prometheus/deploy-helm.sh
+    SKIP_FLUENT_BIT=yes \
+    /bin/bash "$SCRIPT_DIR"/../local-loki-prometheus/deploy-helm.sh
     VALUES_FILE=$SCRIPT_DIR/values-fluent-local-all.yaml
 fi
 

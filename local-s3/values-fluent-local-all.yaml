@@ -8,6 +8,16 @@ config:
   outputs: |
     @include input-node-exporter.conf
 
+    [INPUT]
+        Name        dummy
+        Tag         security.A
+        Dummy       {"message": "reactor breach"}
+
+    [INPUT]
+        Name        dummy
+        Tag         security.B
+        Dummy       {"message": "doughnuts"}
+
     [OUTPUT]
         name        prometheus_remote_write
         host        loki-prometheus-server
@@ -23,7 +33,7 @@ config:
 
     [OUTPUT]
         Name        s3
-        Match       kube.*
+        Match       security.*
         Endpoint    http://minio:9000
         Tls         Off
         Bucket      kubelogs

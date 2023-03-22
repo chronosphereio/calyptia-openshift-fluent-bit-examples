@@ -4,7 +4,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 NAMESPACE=${NAMESPACE:-fluent-bit-logging}
 
-# Make sure to do this first
+# Make sure to do this first for Openshift
 /bin/bash "$SCRIPT_DIR/../cluster-log-access/service-account-creation.sh"
 
 echo "Setting up Fluent Bit to local Grafana stack from helm chart in $NAMESPACE"

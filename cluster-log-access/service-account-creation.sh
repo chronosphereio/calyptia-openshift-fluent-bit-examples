@@ -1,5 +1,10 @@
 #!/bin/bash
-set -eux
+set -eu
+
+# Make sure to do this first for Openshift
+if [[ "${SKIP_SA:-no}" != "no" ]]; then
+    echo "Skipping service account creation"
+fi
 
 NAMESPACE=${NAMESPACE:-fluent-bit-logging}
 

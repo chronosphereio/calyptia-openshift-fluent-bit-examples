@@ -47,6 +47,8 @@ fluent-bit:
 promtail:
   enabled: false
 loki:
+  commonConfig:
+    replication_factor: 1
   rbac:
     create: false
   securityContext:
@@ -58,3 +60,5 @@ loki:
     create: false
     name: fluent-bit-openshift
     annotations: {}
+  storage:
+    type: 'filesystem'
